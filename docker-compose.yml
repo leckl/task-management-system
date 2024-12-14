@@ -1,0 +1,38 @@
+services:
+  db:
+    image: postgres:13
+    container_name: tasks-db
+    environment:
+      POSTGRES_DB: tasks_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - tasks-db-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - tasks-network
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: tasks-app
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/tasks_db
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+      JWT_SECRET: your_jwt_secret
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    networks:
+      - tasks-network
+
+volumes:
+  tasks-db-data:
+
+networks:
+  tasks-network:
+    driver: bridge
