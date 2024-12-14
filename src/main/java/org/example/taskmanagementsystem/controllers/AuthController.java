@@ -1,7 +1,6 @@
 package org.example.taskmanagementsystem.controllers;
 
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -10,23 +9,12 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.example.taskmanagementsystem.dto.AuthRequest;
-import org.example.taskmanagementsystem.dto.TaskResponse;
-import org.example.taskmanagementsystem.models.Role;
-import org.example.taskmanagementsystem.models.User;
-import org.example.taskmanagementsystem.repositories.UserRepository;
-import org.example.taskmanagementsystem.security.JwtUtil;
 import org.example.taskmanagementsystem.services.AuthService;
 import org.example.taskmanagementsystem.services.UserService;
 import org.example.taskmanagementsystem.util.ApiMessageResponse;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Set;
 
 @RestController
 @RequestMapping("/auth")

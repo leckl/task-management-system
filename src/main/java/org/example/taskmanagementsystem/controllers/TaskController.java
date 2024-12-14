@@ -6,7 +6,6 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -33,8 +32,8 @@ import java.util.List;
 @Tag(name = "Tasks", description = "API для управления задачами")
 @AllArgsConstructor
 public class TaskController {
-    private TaskService taskService;
-    private UserService userService;
+    private final TaskService taskService;
+    private final UserService userService;
 
     @PreAuthorize("hasRole('ADMIN')")
     @Operation(

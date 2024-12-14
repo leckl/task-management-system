@@ -13,20 +13,17 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.nio.file.AccessDeniedException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @Service
 public class TaskService {
-    private TaskRepository taskRepository;
-    private UserService userService;
-    private UserRepository userRepository;
-    private CommentRepository commentRepository;
+    private final TaskRepository taskRepository;
+    private final UserService userService;
+    private final UserRepository userRepository;
+    private final CommentRepository commentRepository;
 
     public List<TaskResponse> getAllTasks() {
         List<Task> tasks = taskRepository.findAll();

@@ -8,7 +8,6 @@ import org.example.taskmanagementsystem.exception.CommentNotFoundException;
 import org.example.taskmanagementsystem.exception.TaskNotFoundException;
 import org.example.taskmanagementsystem.exception.UnauthorizedAccessException;
 import org.example.taskmanagementsystem.models.Comment;
-import org.example.taskmanagementsystem.models.Role;
 import org.example.taskmanagementsystem.models.Task;
 import org.example.taskmanagementsystem.models.User;
 import org.example.taskmanagementsystem.repositories.CommentRepository;

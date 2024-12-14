@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
 import org.example.taskmanagementsystem.dto.*;
 import org.example.taskmanagementsystem.services.CommentService;
 import org.example.taskmanagementsystem.util.ApiMessageResponse;
@@ -19,13 +20,10 @@ import java.util.List;
 
 @RestController
 @Tag(name = "Comments", description = "API для управления комментариями задач")
+@AllArgsConstructor
 @RequestMapping("/comment")
 public class CommentController {
-    private CommentService commentService;
-
-    public CommentController(CommentService commentService) {
-        this.commentService = commentService;
-    }
+    private final CommentService commentService;
 
     @Operation(
             summary = "Получить все комментарии к существующей задаче",

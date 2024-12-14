@@ -6,7 +6,6 @@ import org.example.taskmanagementsystem.exception.UnauthorizedAccessException;
 import org.example.taskmanagementsystem.models.Role;
 import org.example.taskmanagementsystem.models.User;
 import org.example.taskmanagementsystem.repositories.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,7 +16,7 @@ import org.springframework.stereotype.Service;
 @Service
 @AllArgsConstructor
 public class UserService implements UserDetailsService {
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     public UserDetails loadUserByEmail(String email) {
         return userRepository.findByEmail(email)

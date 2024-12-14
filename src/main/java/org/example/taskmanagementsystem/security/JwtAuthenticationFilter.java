@@ -4,6 +4,7 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.AllArgsConstructor;
 import org.example.taskmanagementsystem.models.User;
 import org.example.taskmanagementsystem.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +21,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
+@AllArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
-    @Autowired
-    private JwtUtil jwtUtils;
+    private final JwtUtil jwtUtils;
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
@@ -40,12 +40,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 UserDetails userDetails = userService.loadUserByEmail(email);
 
                 if (userDetails != null) {
-                    // Вместо приведения типа используем UserDetails напрямую
                     List<SimpleGrantedAuthority> authorities = userDetails.getAuthorities().stream()
                             .map(authority -> new SimpleGrantedAuthority(authority.getAuthority()))
                             .collect(Collectors.toList());
 
-                    // Создание аутентификационного объекта
                     UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
                             userDetails, null, authorities);
                     authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
